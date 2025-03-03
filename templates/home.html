@@ -31,3 +31,10 @@
     <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a>
         
 {% endblock content %} {% endcomment %}
+
+Home
+{{user.username}}
+<form action="{% url 'logout' %}" method="POST">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-success">خروج</button>
+</form>
