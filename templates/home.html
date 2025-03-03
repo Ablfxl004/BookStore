@@ -1,0 +1,33 @@
+{% comment %} {% extends "_base.html" %}
+
+{% block title %}
+    Home
+{% endblock title %}
+
+
+{% block content %}
+    <h1>Home</h1>
+    {% if user.is_authenticated %}
+        <p>welcome {{ user.username }} |
+            <form action="{% url 'logout' %}" method="POST">
+                {% csrf_token %}
+                <button type="submit">Logout</button>
+            </form>
+        </p>
+    {% else %}
+        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a></p>
+    {% endif %}
+
+    <h2>لیست کتاب ها</h2>
+    <hr>
+
+    
+    {% for book in books %}
+        <h4>{{ book.title }}</h4>
+        <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+        <hr>
+    {% endfor %}
+
+    <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a>
+        
+{% endblock content %} {% endcomment %}
