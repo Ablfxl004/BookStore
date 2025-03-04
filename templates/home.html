@@ -24,9 +24,9 @@
     
     {% for book in books %}
         <h4>{{ book.title }}</h4>
-        {% comment %} <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read more...</a> {% endcomment %}
+        <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+        {{ book.cover }}
         <hr>
     {% endfor %}
+    <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a>
 {% endblock content %}
-
-    {% comment %} <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a> {% endcomment %}

@@ -131,14 +131,24 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# auth config settings
+# auth config
 AUTH_USER_MODEL = 'accounts.CustomUser'
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 
-# crispy conf setting
+# crispy conf 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 #email conf
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# static conf 
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    str(BASE_DIR.joinpath('static')),
+]
+
+# media files conf 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  
