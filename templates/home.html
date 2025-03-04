@@ -1,7 +1,7 @@
-{% comment %} {% extends "_base.html" %}
+{% extends "_base.html" %}
 
 {% block title %}
-    Home
+    خانه
 {% endblock title %}
 
 
@@ -11,7 +11,7 @@
         <p>welcome {{ user.username }} |
             <form action="{% url 'logout' %}" method="POST">
                 {% csrf_token %}
-                <button type="submit">Logout</button>
+                <button type="submit">خروج</button>
             </form>
         </p>
     {% else %}
@@ -24,17 +24,9 @@
     
     {% for book in books %}
         <h4>{{ book.title }}</h4>
-        <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+        {% comment %} <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read more...</a> {% endcomment %}
         <hr>
     {% endfor %}
+{% endblock content %}
 
-    <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a>
-        
-{% endblock content %} {% endcomment %}
-
-Home
-{{user.username}}
-<form action="{% url 'logout' %}" method="POST">
-    {% csrf_token %}
-    <button type="submit" class="btn btn-success">خروج</button>
-</form>
+    {% comment %} <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a> {% endcomment %}
