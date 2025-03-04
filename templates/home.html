@@ -6,27 +6,31 @@
 
 
 {% block content %}
-    <h1>Home</h1>
-    {% if user.is_authenticated %}
-        <p>welcome {{ user.username }} |
-            <form action="{% url 'logout' %}" method="POST">
-                {% csrf_token %}
-                <button type="submit">خروج</button>
-            </form>
-        </p>
-    {% else %}
-        <p><a href="{% url 'login' %}">Login</a> | <a href="{% url 'signup' %}">Signup</a></p>
-    {% endif %}
-
-    <h2>لیست کتاب ها</h2>
-    <hr>
-
-    
-    {% for book in books %}
-        <h4>{{ book.title }}</h4>
-        <a href="{{ book.get_absolute_url }}" class="btn btn-primary">Read more...</a>
-        {{ book.cover }}
-        <hr>
-    {% endfor %}
-    <a href="{% url 'book_add' %}" class="btn btn-danger">Add a book</a>
+<div class="container mt-4">
+    <div class="row flex-row-reverse justify-content-md-center">
+                {% for book in books %}
+                    <div class="card m-2" style="max-width: 45%">
+                        <div class="row g-0 h-100" dir="rtl">
+                            <div class="col-md-4">
+                                {% if book.cover %}
+                                    <img src="{{ book.cover.url }}" class="img-fluid rounded-start" alt="Image root not found!">
+                                {% else %}
+                                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKUAAACUCAMAAADF0xngAAAAMFBMVEX////MzMzV1dXIyMjx8fH6+vrr6+vl5eXS0tL19fXPz8/Y2Njd3d3u7u7g4ODo6OjDMtvxAAAEuklEQVR4nO2b65KDIAyFEYgQLvL+b7tc1EW067YdUGc4P3a6jq1fE3IIaAnp6urq6urq6urq6urq6urqupfs1QD/0cTGqxHOZdgw4NUQZ5qGYbh9ygMkvxriTD7d6v6RZA9It3lKum8P6QuH3T3d8AifNE/wyQBZN5LIv9Q8LcJ6oAYvHb6Sby4CJM8+h96PckzpBslqUzrxsWyA9D5plwOuGuU3b9/NOG0o4Z03g975ZANKcEabKXO+k8Y7pXuj+pRcpvFvloDyv/uHA8j6lHapU6YSpk+ofj0CQrrVzhxrU0LmgiYeGaPVvJI+7IJqU065D8bLK/9CvYQcDqfFypSw8Xfhj4gwApg4fBt4yH2661OiyinNekAezsv6oHBaUIIsKM3vy1LRJ4/rqnHGcX29D+Zx4bSgLKuHrv3D7rKvxmQLytyJ9K957hY0xz7ZipKMK5h39Tz/dDMEXxZOG0oypqpmFInL0z+4AvKPdrxFtyE01cZPN7CxpQwr+OSxN7WjDBgxu5tK8tGdstP/imQryihkQ4GZyGLh/N2BNqTUQymTIM8i2ZKS7yDTpsA/INtRbufKOeXUT06n6W5JOR6EUtnT6m5LWbhQEj+v7raU4ggyFk6Zbn0wBTWixINQ2nDaLt1ukPth2ojSlF4ZNlgCJBRIfDjqPdtQ7gzdtxYRErHoMULMmSOF2lDud7fmwgHFNtcX6euUOW9C6XaQGHxSptY9W6ktdkULzBaUUIZS8eSTGJ3+t1pwdf5ijdmCUpSjkhMZC2fuPFckvZ7I2u9mlZGcq3t1Jwb7b7O1owaUpQvFwskgl0Zz66lT/nkN9tx2kZShPDYRDm5Ujt7cjupTbtvK2ScBNy2SJum+aC6W5bzdzmCebixmTL/s3befuiHlFgfCfQd5MBfhvv38XRdVp9y4UEo3hQOkgx45uwNQe89tc3UMkc2r+0SyEWW+uE3VLbMdrVMt3VFdytxu1nT/N5JBtgVl5kIpkhreiGQQ1Ke0JeQbYzJp7utqUmazyYeQwzwF1aR02aagb3dDuvcLi1PZypRUzqLz3I1avi9dmRIWxdW477/hI1WmXIWKsa8uU43Szho5mX1ytB+r9hMRLKwTP/DJUjUoJVvkq1t61wPOvpM8v+jbsuMiTJDZkc9U9/GnlO6ql/heKPdbALfT7JP3VvDJR6T79pDPKBw1PCLd7PaFE1Y894/kI9KtHpDusDWlz0+6Xu7+kezqeoQgPnAJecON4nb1xeOTWJhbqH3x4N2F4izcq8cwG21v4q4H8r+kvNHbSJwKmigd1TreF0NN0ExajJqOBIzWjhBhjBGA2uhLfovCKdEmUFqJIOLaGhXh4S6agXEgOAIqCCNCOkKdb6iuiKanJMr58JlwzzE+qeEprT9qnG+fPBKiwnAWtTD4he0/njipQ8nVqEnIK4k37hdKESjBTM6za+3/RWW5tVfFkjjfgYj4aDD8UuoYyxBiHz6JCOlLXFI+PG6gGAp+HAoat3cDpYyUOIDQo/CxVL60BBmpmGpsC50K+PIXrJuHHI//h+DxsGUDCJOPq/V1g6O98Y/iBOV8On6S/U6yYrr9j/a6urq6urq6urq6urq6uroeqx++jS4g4o5q9AAAAABJRU5ErkJggg==" class="img-fluid rounded-start" alt="...">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8 h-100">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <div class="card-body">
+                                        <h3 class="card-title"><strong></strong>{{ book.title|capfirst }}</h3>
+                                        <p class="card-text pt-3">{{ book.description|truncatewords:25 }}</p>
+                                        <p class="text-muted">نویسنده: {{ book.author|capfirst}}</p>
+                                        <a href="{{ book.get_absolute_url }}" class="btn btn-primary">بیشتر...</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
 {% endblock content %}

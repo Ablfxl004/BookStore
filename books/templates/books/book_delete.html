@@ -6,9 +6,20 @@
 
 
 {% block content %}
-    <form action="" method="POST">
-        {% csrf_token %}
-        {{ book.title }}
-        <p><input type="submit" class="btn btn-danger" value="Delete"></p>
-    </form>
+    <div class="container mt-4" dir="rtl">
+        <div class="row">
+            <div class="col-9">
+                <div class="card shadow my-3">
+                    <h5 class="card-header bg-danger text-light px-5">آیا از حدف کتاب "{{ book.title }}" اطمینان دارید؟</h5>
+                    <div class="px-5 pt-3 pb-5">
+                        <form method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger mt-2">بله</button>
+                            <a href="{{ book.get_absolute_url }}" class="btn btn-success mt-2">خیر<a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock content %}
