@@ -7,6 +7,7 @@ class BookListView(generic.ListView):
     model = Book
     template_name = 'home.html'
     context_object_name = 'books'
+    paginate_by = 4
 
 
 class BookDetailView(generic.DeleteView):
