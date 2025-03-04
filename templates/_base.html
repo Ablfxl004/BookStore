@@ -39,7 +39,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
                 <a class="nav-link active" aria-current="page" href="{% url 'home' %}">خانه</a>
-                <a class="nav-link" href="{% url 'book_add' %}">اضافه کردن کتاب</a>
+                {% if user.is_staff %}
+                    <a class="nav-link" href="{% url 'book_add' %}">اضافه کردن کتاب</a>
+                {% endif %}
             </div>
         </div>
         {% if user.is_authenticated %}
